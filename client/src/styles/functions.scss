@@ -1,0 +1,91 @@
+@use "sass:math";
+
+@function color-palette(
+  $base-color,
+  $lighten-percentage: 10%,
+  $darken-percentage: 10%
+) {
+  @return (
+    50: lighten($base-color, 50%),
+    100: lighten($base-color, $lighten-percentage * 4),
+    200: lighten($base-color, $lighten-percentage * 3),
+    300: lighten($base-color, $lighten-percentage * 2),
+    400: lighten($base-color, $lighten-percentage),
+    500: $base-color,
+    600: darken($base-color, $darken-percentage),
+    700: darken($base-color, $darken-percentage + 5%),
+    800: darken($base-color, $darken-percentage + 8%)
+  );
+}
+
+@function get-color-50($color-palette) {
+  @return map-get($color-palette, 50);
+}
+@function get-color-100($color-palette) {
+  @return map-get($color-palette, 100);
+}
+@function get-color-200($color-palette) {
+  @return map-get($color-palette, 200);
+}
+@function get-color-300($color-palette) {
+  @return map-get($color-palette, 300);
+}
+@function get-color-400($color-palette) {
+  @return map-get($color-palette, 400);
+}
+@function get-color-500($color-palette) {
+  @return map-get($color-palette, 500);
+}
+@function get-color-600($color-palette) {
+  @return map-get($color-palette, 600);
+}
+@function get-color-700($color-palette) {
+  @return map-get($color-palette, 700);
+}
+@function get-color-800($color-palette) {
+  @return map-get($color-palette, 800);
+}
+
+@function generate-gradient($direction, $colors...) {
+  $gradient-list: ();
+
+  @for $i from 1 through length($colors) {
+    $color: nth($colors, $i);
+    $position: percentage(($i - 1) / (length($colors) - 1));
+
+    $gradient-list: append($gradient-list, $color $position);
+
+    @if $i < length($colors) {
+      $gradient-list: append($gradient-list, ", ");
+    }
+  }
+
+  @return unquote("linear-gradient(#{$direction}, #{$gradient-list})");
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function get-clamp-size($divider, $max, $min, $typeSize: vw) {
+  $size: calc(strip-unit($max) / strip-unit($divider) * 100);
+
+  @return clamp(#{$min}, #{$size}#{$typeSize}, #{$max});
+}
+
+@function to-px($number) {
+  @return calc($number * 1px);
+}
+
+@function to-vw($number) {
+  @return calc($number * 1vw);
+}
+
+@function dynamic-size($viewport-min, $min-size, $max-size) {
+  $size: calc(strip-unit($max-size) / strip-unit($viewport-min) * 100);
+  @return clamp($min-size, #{to-vw($size)}, $max-size);
+}
