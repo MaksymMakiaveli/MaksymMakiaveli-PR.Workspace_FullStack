@@ -1,7 +1,10 @@
 @use "sass:color";
+@use "sass:map";
 
 @import "functions";
 @import "mixins";
+
+//* ------------- Colors
 
 // Common colors
 $color-white: #fff;
@@ -69,3 +72,69 @@ $gradient-primary: generate-gradient(
   rgba(244, 195, 149, 1),
   rgba(242, 127, 148, 1)
 );
+
+//* ------------- Sizes
+
+$font-sizes: (
+  "xs": 10px,
+  "sm": 12px,
+  "base": 16px,
+  "md": 18px,
+  "lg": 24px,
+  "xl": 36px,
+  "xxl-1": 48px,
+  "xxl-2": 64px,
+);
+
+$font-size-xs: map.get($font-sizes, "xs");
+$font-size-sm: map.get($font-sizes, "sm");
+$font-size-base: map.get($font-sizes, "base");
+$font-size-md: map.get($font-sizes, "md");
+$font-size-lg: map.get($font-sizes, "lg");
+$font-size-xl: map.get($font-sizes, "xl");
+$font-size-xxl-1: map.get($font-sizes, "xxl-1");
+$font-size-xxl-2: map.get($font-sizes, "xxl-2");
+
+$spacing-sizes: (
+  "none": 0,
+  "xs": 4px,
+  "sm": 8px,
+  "base": 16px,
+  "md": 24px,
+  "lg": 32px,
+  "xl": 48px,
+  "xxl-1": 64px,
+  "xxl-2": 96px,
+  "xxl-3": 140px,
+  "xxl-4": 256px,
+);
+
+$spacing-none: map.get($spacing-sizes, "none");
+$spacing-xs: map.get($spacing-sizes, "xs");
+$spacing-sm: map.get($spacing-sizes, "sm");
+$spacing-base: map.get($spacing-sizes, "base");
+$spacing-md: map.get($spacing-sizes, "md");
+$spacing-lg: map.get($spacing-sizes, "lg");
+$spacing-xl: map.get($spacing-sizes, "xl");
+$spacing-xxl-1: map.get($spacing-sizes, "xxl-1");
+$spacing-xxl-2: map.get($spacing-sizes, "xxl-2");
+$spacing-xxl-3: map.get($spacing-sizes, "xxl-3");
+$spacing-xxl-4: map.get($spacing-sizes, "xxl-4");
+
+$rounded-sizes: (
+  "none": 0,
+  "sm": 4px,
+  "base": 8px,
+  "md": 12px,
+  "lg": 16px,
+  "xl": 24px,
+  "xxl": 32px,
+);
+
+$rounded-none: map.get($rounded-sizes, "none");
+$rounded-sm: map.get($rounded-sizes, "sm");
+$rounded-base: map.get($rounded-sizes, "base");
+$rounded-md: map.get($rounded-sizes, "md");
+$rounded-lg: map.get($rounded-sizes, "lg");
+$rounded-xl: map.get($rounded-sizes, "xl");
+$rounded-xxl: map.get($rounded-sizes, "xxl");

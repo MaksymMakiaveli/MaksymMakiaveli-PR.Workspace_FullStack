@@ -1,8 +1,41 @@
 @import "variables";
 @import "mixins";
+@import "functions";
+@import "media";
 
 .auth {
   @include full-size;
 
   background-color: $color-blue-500;
+
+  .layout {
+    @include full-size;
+    @include flex-between-vert;
+
+    padding: $spacing-base 0 $spacing-base $spacing-base;
+
+    // gap: dynamic-size(get-breakpoint(sm), $spacing-xxl-1, $spacing-xxl-3);
+
+    &_block {
+      flex: 1 0 auto;
+      height: 100%;
+    }
+
+    .left-side {
+      background: $gradient-primary;
+      border-radius: $rounded-lg;
+    }
+    // .right-side {
+    // }
+  }
+}
+
+@include breakpoint(md) {
+  .auth {
+    .layout {
+      .left-side {
+        display: none;
+      }
+    }
+  }
 }

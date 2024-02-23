@@ -85,6 +85,12 @@
   justify-content: center;
 }
 
+@mixin flex-between-vert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @mixin flex-center-column {
   @include flex-center;
   flex-direction: column;

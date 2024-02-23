@@ -9,8 +9,12 @@ $breakpoints: (
   xxl: 1920px,
 );
 
-@mixin media($point) {
-  @media screen and (max-width: map.get($breakpoints, $point)) {
+@function get-breakpoint($point) {
+  @return map.get($breakpoints, $point);
+}
+
+@mixin breakpoint($point) {
+  @media screen and (max-width: get-breakpoint($point)) {
     @content;
   }
 }
